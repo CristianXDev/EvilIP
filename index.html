@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>EvilIP - Análisis de Red</title>
+
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+        />
+        <link
+            href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+            rel="stylesheet"
+        />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;900&display=swap"
+            rel="stylesheet"
+        />
+        <link href="https://fonts.cdnfonts.com/css/jmh-ss" rel="stylesheet" />
+        <link href="img/logo.svg" rel="icon" />
+        <link href="css/style.css" rel="stylesheet" />
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg fixed-top">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">
+                    <img
+                        src="img/logo.svg"
+                        alt="EvilIP Logo"
+                        height="43"
+                        width="50"
+                        style="flex-shrink: 0"
+                    />
+                    EvilIP
+                </a>
+                <button
+                    class="navbar-toggler shadow-none"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav"
+                >
+                    <i class="bx bx-menu fs-1"></i>
+                </button>
+                <div
+                    class="collapse navbar-collapse justify-content-center"
+                    id="navbarNav"
+                >
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#herramientas"
+                                >Herramientas</a
+                            >
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#servicios">Servicios</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#contacto">Contacto</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="d-none d-lg-flex gap-3 align-items-center">
+                    <a href="#" class="btn-brutal ms-3">
+                        <i class="bx bxl-github fs-5"></i>
+                        Repositorio
+                    </a>
+                </div>
+            </div>
+        </nav>
+
+        <section class="hero-section text-center">
+            <canvas id="speedCanvas"></canvas>
+            <div class="hero-overlay"></div>
+            <div class="hero-content container">
+                <h1 class="display-2 mb-4 mx-auto" style="max-width: 900px">Analiza tu conexión. <br />Rápido y preciso.
+                </h1>
+                <p class="fs-5 mb-5 mx-auto" style="max-width: 600px">
+                    La herramienta definitiva para conocer tu velocidad real,
+                    capturar tu información de red y diagnosticar tu latencia en
+                    segundos.
+                </p>
+                <a
+                    href="#herramientas"
+                    class="btn-brutal btn-brutal-dark fs-5 py-3 px-5 text-decoration-none"
+                >
+                    <img src="img/logo.svg" alt="EvilIP Logo" height="25" width="35" style="flex-shrink: 0; filter: invert(1); -webkit-filter: invert(1);" class="me-2">
+                    Empezar Análisis
+                </a>
+            </div>
+        </section>
+
+        <section id="herramientas" class="container">
+            <p class="text-danger fw-bold mt-5 mb-2">HERRAMIENTAS DE DIAGNÓSTICO</p>
+            <h2 class="mb-4 display-5">TU INFORMACIÓN & SPEEDTEST</h2>
+
+            <div class="row g-4">
+                <div class="col-lg-5">
+                    <div class="brutal-card bg-yellow">
+                        <h3 class="mb-4">
+                            <i class="bx bx-radar"></i> Huella de Red
+                        </h3>
+
+                        <div
+                            class="bg-white p-4 rounded text-start"
+                            style="border: 3px solid #1a1a1a"
+                        >
+                            <div class="info-list-item">
+                                <i
+                                    class="bx bx-globe info-icon text-primary"
+                                ></i>
+                                <div>
+                                    <small
+                                        class="text-muted fw-bold text-uppercase"
+                                        style="font-size: 0.75rem"
+                                        >Dirección IP</small
+                                    >
+                                    <div class="fs-5 fw-bold" id="json-ip">
+                                        Cargando...
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="info-list-item">
+                                <i
+                                    class="bx bx-broadcast info-icon text-danger"
+                                ></i>
+                                <div>
+                                    <small
+                                        class="text-muted fw-bold text-uppercase"
+                                        style="font-size: 0.75rem"
+                                        >Proveedor (ISP)</small
+                                    >
+                                    <div class="fs-5 fw-bold" id="json-isp">
+                                        Cargando...
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="info-list-item">
+                                <i class="bx bx-map info-icon text-success"></i>
+                                <div>
+                                    <small
+                                        class="text-muted fw-bold text-uppercase"
+                                        style="font-size: 0.75rem"
+                                        >Ubicación</small
+                                    >
+                                    <div
+                                        class="fs-5 fw-bold"
+                                        id="json-location"
+                                    >
+                                        Cargando...
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="info-list-item border-0 pb-0">
+                                <i
+                                    class="bx bx-shield-quarter info-icon text-warning"
+                                    id="icon-risk"
+                                ></i>
+                                <div>
+                                    <small
+                                        class="text-muted fw-bold text-uppercase"
+                                        style="font-size: 0.75rem"
+                                        >Estado de Red</small
+                                    >
+                                    <div class="fs-5 fw-bold" id="json-risk">
+                                        Cargando...
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-7">
+                    <div
+                        class="brutal-card text-center d-flex flex-column justify-content-center align-items-center"
+                    >
+                        <div
+                            class="w-100 d-flex justify-content-between mb-3 px-3"
+                        >
+                            <div class="text-start">
+                                <p
+                                    class="fw-bold text-uppercase text-muted mb-0"
+                                    style="font-size: 0.85rem"
+                                >
+                                    <i
+                                        class="bx bx-down-arrow-circle text-primary"
+                                    ></i>
+                                    Descarga
+                                </p>
+                                <p class="fs-4 fw-bold mb-0" id="dl-speed">
+                                    -- Mbps
+                                </p>
+                            </div>
+                            <div class="text-end">
+                                <p
+                                    class="fw-bold text-uppercase text-muted mb-0"
+                                    style="font-size: 0.85rem"
+                                >
+                                    <i
+                                        class="bx bx-up-arrow-circle text-danger"
+                                    ></i>
+                                    Subida
+                                </p>
+                                <p class="fs-4 fw-bold mb-0" id="ul-speed">
+                                    -- Mbps
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="speedtest-display my-4" id="main-speed">
+                            0.00
+                            <span class="fs-4 d-block text-muted">Mbps</span>
+                        </div>
+
+                        <button class="btn-brutal btn-brutal-dark w-75 py-3 fs-5" id="btn-start-test" onclick="runRealSpeedTest()">
+                            <i class="bx bx-play-circle"></i> INICIAR PRUEBA
+                        </button>
+                    </div>
+                </div>
+
+                </div>
+
+
+
+                <div class="col-12 mt-4">
+                    <div class="brutal-card bg-white p-4" style="border: 3px solid #1a1a1a;">
+                        <h4 class="mb-4 text-uppercase fw-bold" style="font-size: 1.1rem;">
+                            <i class="bx bx-radar text-danger"></i> Análisis de Privacidad y Riesgo
+                        </h4>
+
+                        <div class="row g-4 text-center justify-content-center align-items-center">
+
+                            <div class="col-6 col-md-3">
+                                <i class="bx bx-loader-alt bx-spin fs-1 mb-2 text-muted" id="icon-device"></i>
+                                <p class="fw-bold text-uppercase mb-0" style="font-size: 0.85rem;" id="text-device">Cargando...</p>
+                            </div>
+
+                            <div class="col-6 col-md-3">
+                                <i class="bx bx-loader-alt bx-spin fs-1 mb-2 text-muted" id="icon-privacy"></i>
+                                <p class="fw-bold text-uppercase mb-0" style="font-size: 0.85rem;" id="text-privacy">Cargando...</p>
+                            </div>
+
+                            <div class="col-6 col-md-3">
+                                <i class="bx bx-loader-alt bx-spin fs-1 mb-2 text-muted" id="icon-network"></i>
+                                <p class="fw-bold text-uppercase mb-0" style="font-size: 0.85rem;" id="text-network">Cargando...</p>
+                            </div>
+
+                            <div class="col-6 col-md-3">
+                                <i class="bx bx-loader-alt bx-spin fs-1 mb-2 text-muted" id="icon-risk-score"></i>
+                                <p class="fw-bold text-uppercase mb-0" style="font-size: 0.85rem;" id="text-score">--/100</p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+        <section id="servicios" class="container">
+            <div class="dotted-divider"></div>
+            <p class="text-danger fw-bold mb-2">OTRAS FUNCIONES</p>
+            <h2 class="mb-4 display-5"> <img src="img/logo.svg" alt="EvilIP Logo" height="45" width="55" style="flex-shrink: 0;" class="me-2">NUESTROS SERVICIOS</h2>
+
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="brutal-card">
+                        <i class="bx bx-server fs-1 mb-3"></i>
+                        <h4>Análisis de Latencia</h4>
+                        <p>
+                            Hacemos ping a múltiples servidores globales para
+                            determinar tu estabilidad de conexión.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="brutal-card">
+                        <i class="bx bx-shield-quarter fs-1 mb-3"></i>
+                        <h4>Detección de VPN</h4>
+                        <p>
+                            Identificamos si tu tráfico está siendo enrutado a
+                            través de proxies o redes privadas.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="brutal-card">
+                        <i class="bx bx-line-chart fs-1 mb-3"></i>
+                        <h4>Historial de Red</h4>
+                        <p>
+                            Guarda tus resultados y compara el rendimiento de tu
+                            ISP a lo largo del tiempo.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contacto" class="container mb-5">
+            <div class="dotted-divider"></div>
+            <div class="row align-items-center">
+                <div class="col-md-6 mb-4 mb-md-0">
+                    <h2 class="display-4 mb-3">¿PROBLEMAS CON TU RED?</h2>
+                    <p class="fs-5">
+                        Déjanos un mensaje. Nuestro equipo técnico revisará tus
+                        logs y te contactará para optimizar tu infraestructura.
+                    </p>
+                </div>
+                <div class="col-md-6">
+                    <div class="brutal-card bg-yellow">
+                        <form
+                            onsubmit="
+                                event.preventDefault();
+                                alert('Mensaje enviado (Simulado)');
+                            "
+                        >
+                            <div class="mb-3">
+                                <label class="fw-bold mb-1"
+                                    >Nombre Completo</label
+                                >
+                                <input
+                                    type="text"
+                                    class="form-control shadow-none"
+                                    placeholder="Ingresa tu nombre"
+                                    required
+                                />
+                            </div>
+                            <div class="mb-3">
+                                <label class="fw-bold mb-1"
+                                    >Correo Electrónico</label
+                                >
+                                <input
+                                    type="email"
+                                    class="form-control shadow-none"
+                                    placeholder="tu@email.com"
+                                    required
+                                />
+                            </div>
+                            <div class="mb-4">
+                                <label class="fw-bold mb-1">Mensaje</label>
+                                <textarea
+                                    class="form-control shadow-none"
+                                    rows="3"
+                                    placeholder="¿En qué podemos ayudarte?"
+                                    required
+                                ></textarea>
+                            </div>
+                            <button
+                                type="submit"
+                                class="btn-brutal btn-brutal-dark w-100"
+                            >
+                                ENVIAR MENSAJE
+                                <i class="bx bx-right-arrow-alt"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <div class="container text-center">
+                <h4 class="mb-3">
+                    <img
+                        src="img/logo.svg"
+                        alt="EvilIP Logo"
+                        height="43"
+                        width="50"
+                        style="flex-shrink: 0"
+                    />
+                    EvilIP
+                </h4>
+                <p class="mb-0 text-muted fw-bold">
+                    &copy; 2026 EvilIP Network. Todos los derechos reservados.
+                </p>
+            </div>
+        </footer>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="js/main.js"></script>
+        <script src="js/ip-service.js"></script>
+        <script src="js/speedtest.js"></script>
+        <script src="js/speedtest-service.js"></script>
+    </body>
+</html>
