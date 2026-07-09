@@ -22,58 +22,55 @@
         <link href="css/style.css" rel="stylesheet" />
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg fixed-top">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#">
-                    <img
-                        src="img/logo.svg"
-                        alt="EvilIP Logo"
-                        height="43"
-                        width="50"
-                        style="flex-shrink: 0"
-                    />
-                    EvilIP
-                </a>
-                <button
-                    class="navbar-toggler shadow-none"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#navbarNav"
-                >
-                    <i class="bx bx-menu fs-1"></i>
-                </button>
-                <div
-                    class="collapse navbar-collapse justify-content-center"
-                    id="navbarNav"
-                >
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#herramientas"
-                                >Herramientas</a
-                            >
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#servicios">Servicios</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#contacto">Contacto</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="d-none d-lg-flex gap-3 align-items-center">
-                    <a href="#" class="btn-brutal ms-3">
-                        <i class="bx bxl-github fs-5"></i>
-                        Repositorio
-                    </a>
-                </div>
-            </div>
-        </nav>
 
+<nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+            <img
+                src="img/logo.svg"
+                alt="EvilIP Logo"
+                height="43"
+                width="50"
+                style="flex-shrink: 0"
+            />
+            EvilIP
+        </a>
+        <button
+            class="navbar-toggler shadow-none"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+        >
+            <i class="bx bx-menu fs-1"></i>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mx-auto mb-3 mb-lg-0 text-center">
+                <li class="nav-item">
+                    <a class="nav-link" href="#herramientas">Herramientas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#servicios">Servicios</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#contacto">Contacto</a>
+                </li>
+            </ul>
+
+            <div class="d-flex justify-content-center justify-content-lg-end gap-3 align-items-center">
+                <a href="https://github.com/CristianXDev/EvilIP" target="_blank" class="btn-brutal">
+                    <i class="bx bxl-github fs-5"></i>
+                    Repositorio
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
         <section class="hero-section text-center">
             <canvas id="speedCanvas"></canvas>
             <div class="hero-overlay"></div>
             <div class="hero-content container">
-                <h1 class="display-2 mb-4 mx-auto" style="max-width: 900px">Analiza tu conexión. <br />Rápido y preciso.
+                <h1 class="display-3 mb-4 mx-auto" style="max-width: 900px">Analiza tu conexión. <br />Rápido y preciso.
                 </h1>
                 <p class="fs-5 mb-5 mx-auto" style="max-width: 600px">
                     La herramienta definitiva para conocer tu velocidad real,
@@ -82,7 +79,7 @@
                 </p>
                 <a
                     href="#herramientas"
-                    class="btn-brutal btn-brutal-dark fs-5 py-3 px-5 text-decoration-none"
+                    class="btn-brutal btn-brutal-dark fs-5 py-3 px-4 text-decoration-none"
                 >
                     <img src="img/logo.svg" alt="EvilIP Logo" height="25" width="35" style="flex-shrink: 0; filter: invert(1); -webkit-filter: invert(1);" class="me-2">
                     Empezar Análisis
@@ -302,37 +299,30 @@
             <div class="dotted-divider"></div>
             <div class="row align-items-center">
                 <div class="col-md-6 mb-4 mb-md-0">
-                    <h2 class="display-4 mb-3">¿PROBLEMAS CON TU RED?</h2>
+                    <h2 class="display-4 mb-3">¿Quieres un sistema web personaliado?</h2>
                     <p class="fs-5">
-                        Déjanos un mensaje. Nuestro equipo técnico revisará tus
-                        logs y te contactará para optimizar tu infraestructura.
+                        Déjanos un mensaje. Nuestro equipo técnico revisaran tu solicitud y te contactará para optimizar tu infraestructura.
                     </p>
                 </div>
                 <div class="col-md-6">
                     <div class="brutal-card bg-yellow">
-                        <form
-                            onsubmit="
-                                event.preventDefault();
-                                alert('Mensaje enviado (Simulado)');
-                            "
-                        >
+                        <!-- Se agrega el ID y se elimina el onsubmit de alerta simulada -->
+                        <form id="contactForm">
                             <div class="mb-3">
-                                <label class="fw-bold mb-1"
-                                    >Nombre Completo</label
-                                >
+                                <label class="fw-bold mb-1">Nombre Completo</label>
                                 <input
                                     type="text"
+                                    id="name"
                                     class="form-control shadow-none"
                                     placeholder="Ingresa tu nombre"
                                     required
                                 />
                             </div>
                             <div class="mb-3">
-                                <label class="fw-bold mb-1"
-                                    >Correo Electrónico</label
-                                >
+                                <label class="fw-bold mb-1">Correo Electrónico</label>
                                 <input
                                     type="email"
+                                    id="email"
                                     class="form-control shadow-none"
                                     placeholder="tu@email.com"
                                     required
@@ -341,6 +331,7 @@
                             <div class="mb-4">
                                 <label class="fw-bold mb-1">Mensaje</label>
                                 <textarea
+                                    id="msg"
                                     class="form-control shadow-none"
                                     rows="3"
                                     placeholder="¿En qué podemos ayudarte?"
@@ -381,7 +372,7 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
         <script src="js/main.js"></script>
         <script src="js/ip-service.js"></script>
-        <script src="js/speedtest.js"></script>
         <script src="js/speedtest-service.js"></script>
+        <script src="js/contact-whatsapp.js"></script>
     </body>
 </html>
